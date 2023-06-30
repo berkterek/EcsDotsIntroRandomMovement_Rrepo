@@ -1,7 +1,6 @@
+using EcsDostRandomMovement.EcsDots.Aspects;
 using Unity.Burst;
 using Unity.Entities;
-using Unity.Mathematics;
-using Unity.Transforms;
 
 namespace EcsDostRandomMovement.EcsDots.Systems
 {
@@ -13,11 +12,21 @@ namespace EcsDostRandomMovement.EcsDots.Systems
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
             
-            foreach (var localTransform in SystemAPI.Query<RefRW<LocalTransform>>())
+            new MoveDestinationJob()
             {
-                float3 direction = deltaTime * new float3(0f, 0f, 1f);
-                localTransform.ValueRW.Position += direction;
-            }
+                DeltaTime = deltaTime
+            }.Schedule();
+        }
+    }
+
+    [BurstCompile]
+    public partial struct MoveDestinationJob : IJobEntity
+    {
+        public float DeltaTime;
+        
+        private void Execute(MoveToDestinationAspect moveToDestinationAspect)
+        {
+            moveToDestinationAspect.MoveDestination(DeltaTime);
         }
     }
 }
