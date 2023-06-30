@@ -1,4 +1,3 @@
-using System;
 using EcsDostRandomMovement.EcsDots.Components;
 using Unity.Entities;
 using UnityEngine;
@@ -13,7 +12,7 @@ namespace EcsDostRandomMovement.EcsDots.Authorings
 
     public class MoveEntityBaker : Baker<MoveEntityAuthoring>
     {
-        [Obsolete("Obsolete")]
+        [System.Obsolete("Obsolete")]
         public override void Bake(MoveEntityAuthoring authoring)
         {
             AddComponent(new DestinationDataComponent{Destination = authoring.Destination});
