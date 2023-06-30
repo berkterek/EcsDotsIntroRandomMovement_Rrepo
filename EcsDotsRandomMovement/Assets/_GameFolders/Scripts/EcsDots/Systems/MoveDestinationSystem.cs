@@ -15,7 +15,7 @@ namespace EcsDostRandomMovement.EcsDots.Systems
             new MoveDestinationJob()
             {
                 DeltaTime = deltaTime
-            }.Schedule();
+            }.ScheduleParallel();
         }
     }
 

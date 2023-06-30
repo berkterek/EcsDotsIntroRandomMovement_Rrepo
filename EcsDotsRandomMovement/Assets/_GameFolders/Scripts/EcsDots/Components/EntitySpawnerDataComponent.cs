@@ -7,5 +7,7 @@ namespace EcsDostRandomMovement.EcsDots.Components
         public Entity Prefab;
         public int GridSize;
         public int Spread;
+        public float MinMoveSpeed;
+        public float MaxMoveSpeed;
     }
 }

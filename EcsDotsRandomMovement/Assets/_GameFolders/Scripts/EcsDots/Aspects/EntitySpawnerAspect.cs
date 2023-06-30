@@ -1,6 +1,4 @@
 using EcsDostRandomMovement.EcsDots.Components;
-using EcsDostRandomMovement.EcsDots.Systems;
-using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -19,10 +17,24 @@ namespace EcsDostRandomMovement.EcsDots.Aspects
                 for (int z = 0; z < EntitySpawnDataRO.ValueRO.GridSize; z++)
                 {
                     var entity = entityManager.Instantiate(EntitySpawnDataRO.ValueRO.Prefab);
+                    float spread = EntitySpawnDataRO.ValueRO.Spread;
+                    
+                    float3 position = new float3(x * spread, 0f, z * spread);
+                    
                     entityManager.SetComponentData(entity, new LocalTransform()
                     {
-                        Position = new float3(x,0f,z),
+                        Position = position,
                         Scale = 1f
+                    });
+                    
+                    entityManager.SetComponentData(entity, new DestinationDataComponent
+                    {
+                        Destination = new float3(0f,0f,0f)
+                    });
+                    
+                    entityManager.SetComponentData(entity, new MovementSpeedDataComponent()
+                    {
+                        MoveSpeed = Random.CreateFromIndex((uint)z).NextFloat(EntitySpawnDataRO.ValueRO.MinMoveSpeed,EntitySpawnDataRO.ValueRO.MaxMoveSpeed)
                     });
                 }
             }

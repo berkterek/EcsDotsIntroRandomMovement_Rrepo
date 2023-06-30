@@ -10,6 +10,8 @@ namespace EcsDostRandomMovement.EcsDots.Authorings
         public GameObject Prefab;
         public int GridSize;
         public int Spread;
+        public float MinMoveSpeed;
+        public float MaxMoveSpeed;
     }
 
     public class EntitySpawnerBaker : Baker<EntitySpawnerAuthoring>
@@ -21,7 +23,9 @@ namespace EcsDostRandomMovement.EcsDots.Authorings
             {
                 Spread = authoring.Spread,
                 Prefab = GetEntity(authoring.Prefab),
-                GridSize = authoring.GridSize
+                GridSize = authoring.GridSize,
+                MaxMoveSpeed = authoring.MaxMoveSpeed,
+                MinMoveSpeed = authoring.MinMoveSpeed
             });
         }
     }

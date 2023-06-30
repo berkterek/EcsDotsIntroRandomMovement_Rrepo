@@ -6,8 +6,7 @@ namespace EcsDostRandomMovement.EcsDots.Authorings
 {
     public class MoveEntityAuthoring : MonoBehaviour
     {
-        public float MoveSpeed = 5f;
-        public Vector3 Destination;
+        
     }
 
     public class MoveEntityBaker : Baker<MoveEntityAuthoring>
@@ -15,8 +14,8 @@ namespace EcsDostRandomMovement.EcsDots.Authorings
         [System.Obsolete("Obsolete")]
         public override void Bake(MoveEntityAuthoring authoring)
         {
-            AddComponent(new DestinationDataComponent{Destination = authoring.Destination});
-            AddComponent(new MovementSpeedDataComponent { MoveSpeed = authoring.MoveSpeed });
+            AddComponent<DestinationDataComponent>();
+            AddComponent<MovementSpeedDataComponent>();
             AddComponent<PersonTagDataComponent>();
         }
     }
