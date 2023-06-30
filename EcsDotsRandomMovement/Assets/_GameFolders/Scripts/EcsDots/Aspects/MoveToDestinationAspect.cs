@@ -33,5 +33,5 @@ namespace EcsDostRandomMovement.EcsDots.Aspects
                 LocalTransformRW.ValueRW.Position += movement;
             }
         }
-    }    
+    }
 }

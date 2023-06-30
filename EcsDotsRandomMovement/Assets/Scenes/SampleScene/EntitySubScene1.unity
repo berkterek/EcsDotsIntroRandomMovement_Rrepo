@@ -168,5 +168,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3308748449858840421, guid: edf5f7601670a394f988306b9c4d596d, type: 3}
-  GridSize: 1
-  Spread: 1
+  GridSize: 10
+  Spread: 10
