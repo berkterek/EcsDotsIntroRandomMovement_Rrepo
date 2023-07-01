@@ -34,7 +34,7 @@ namespace EcsDostRandomMovement.EcsDots.Aspects
                     
                     entityManager.SetComponentData(entity, new MovementSpeedDataComponent()
                     {
-                        MoveSpeed = Random.CreateFromIndex((uint)z).NextFloat(EntitySpawnDataRO.ValueRO.MinMoveSpeed,EntitySpawnDataRO.ValueRO.MaxMoveSpeed)
+                        MoveSpeed = Random.CreateFromIndex((uint)(z * x)).NextFloat(EntitySpawnDataRO.ValueRO.MinMoveSpeed,EntitySpawnDataRO.ValueRO.MaxMoveSpeed)
                     });
                 }
             }
