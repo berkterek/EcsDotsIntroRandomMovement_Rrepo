@@ -21,7 +21,7 @@ namespace EcsDostRandomMovement.EcsDots.Aspects
         {
             if (math.all(DestinationDataRW.ValueRO.Destination == LocalTransformRW.ValueRO.Position))
             {
-                elapsedTime = math.abs(elapsedTime);
+                elapsedTime = math.abs(Entity.Index + elapsedTime);
                 uint roundValue = (uint)math.round(elapsedTime);
                 Debug.Log(roundValue.ToString());
                 uint seed = roundValue;
