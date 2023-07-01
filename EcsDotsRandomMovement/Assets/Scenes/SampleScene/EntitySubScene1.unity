@@ -170,3 +170,5 @@ MonoBehaviour:
   Prefab: {fileID: 3308748449858840421, guid: edf5f7601670a394f988306b9c4d596d, type: 3}
   GridSize: 100
   Spread: 10
+  MinMoveSpeed: 2
+  MaxMoveSpeed: 7
