@@ -29,7 +29,7 @@ namespace EcsDostRandomMovement.EcsDots.Aspects
                     
                     entityManager.SetComponentData(entity, new DestinationDataComponent
                     {
-                        Destination = new float3(0f,0f,0f)
+                        Destination = position
                     });
                     
                     entityManager.SetComponentData(entity, new MovementSpeedDataComponent()

@@ -2,6 +2,8 @@ using EcsDostRandomMovement.EcsDots.Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
+using Random = Unity.Mathematics.Random;
 
 namespace EcsDostRandomMovement.EcsDots.Aspects
 {
@@ -15,9 +17,21 @@ namespace EcsDostRandomMovement.EcsDots.Aspects
 
         public PersonTagDataComponent PersonTagData => PersonTagDataRO.ValueRO;
 
-        public void MoveDestination(float deltaTime)
+        public void MoveDestination(float deltaTime, float elapsedTime)
         {
-            if (math.all(DestinationDataRW.ValueRO.Destination == LocalTransformRW.ValueRO.Position)) return;
+            if (math.all(DestinationDataRW.ValueRO.Destination == LocalTransformRW.ValueRO.Position))
+            {
+                elapsedTime = math.abs(elapsedTime);
+                uint roundValue = (uint)math.round(elapsedTime);
+                Debug.Log(roundValue.ToString());
+                uint seed = roundValue;
+                seed += roundValue % 2 == 0 ? (uint)10 : 20;
+                float x = Random.CreateFromIndex(seed).NextFloat(0f, 500f);
+                seed = 0;
+                seed += roundValue % 2 == 0 ? (uint)100 : 200;
+                float z = Random.CreateFromIndex(seed).NextFloat(0, 500f);
+                DestinationDataRW.ValueRW.Destination = new float3(x, 0f, z);
+            }
             
             float3 toDestination = DestinationDataRW.ValueRO.Destination - LocalTransformRW.ValueRO.Position;
 
