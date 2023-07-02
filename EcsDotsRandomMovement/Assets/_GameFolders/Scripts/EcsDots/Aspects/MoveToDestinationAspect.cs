@@ -14,6 +14,7 @@ namespace EcsDostRandomMovement.EcsDots.Aspects
         readonly RefRO<PersonTagDataComponent> PersonTagDataRO;
         readonly RefRO<MovementSpeedDataComponent> MoveSpeedDataRO;
         readonly RefRW<DestinationDataComponent> DestinationDataRW;
+        readonly RefRW<RandomIncreaseDataComponent> RandomIncraseRW;
 
         public PersonTagDataComponent PersonTagData => PersonTagDataRO.ValueRO;
 
@@ -23,12 +24,12 @@ namespace EcsDostRandomMovement.EcsDots.Aspects
             {
                 elapsedTime = math.abs(Entity.Index + elapsedTime);
                 uint roundValue = (uint)math.round(elapsedTime);
-                Debug.Log(roundValue.ToString());
-                uint seed = roundValue;
-                seed += roundValue % 2 == 0 ? (uint)10 : 20;
+                RandomIncraseRW.ValueRW.Value += roundValue;
+                Debug.Log(RandomIncraseRW.ValueRO.Value.ToString());
+                uint seed = RandomIncraseRW.ValueRO.Value;
+                seed += RandomIncraseRW.ValueRO.Value % 2 == 0 ? (uint)10 : 20;
                 float x = Random.CreateFromIndex(seed).NextFloat(0f, 500f);
-                seed = 0;
-                seed += roundValue % 2 == 0 ? (uint)100 : 200;
+                seed += RandomIncraseRW.ValueRO.Value % 2 == 0 ? (uint)100 : 200;
                 float z = Random.CreateFromIndex(seed).NextFloat(0, 500f);
                 DestinationDataRW.ValueRW.Destination = new float3(x, 0f, z);
             }

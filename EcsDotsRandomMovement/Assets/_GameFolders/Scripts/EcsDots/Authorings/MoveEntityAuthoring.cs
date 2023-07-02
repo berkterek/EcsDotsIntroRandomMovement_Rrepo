@@ -17,6 +17,7 @@ namespace EcsDostRandomMovement.EcsDots.Authorings
             AddComponent<DestinationDataComponent>();
             AddComponent<MovementSpeedDataComponent>();
             AddComponent<PersonTagDataComponent>();
+            AddComponent<RandomIncreaseDataComponent>();
         }
     }
 }
