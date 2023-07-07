@@ -1,5 +1,4 @@
-﻿using System;
-using EcsDostRandomMovement.EcsDots.Components;
+﻿using EcsDostRandomMovement.EcsDots.Components;
 using Unity.Entities;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ namespace EcsDostRandomMovement.EcsDots.Authorings
 
     public class EntitySpawnerBaker : Baker<EntitySpawnerAuthoring>
     {
-        [Obsolete("Obsolete")]
+        [System.Obsolete("Obsolete")]
         public override void Bake(EntitySpawnerAuthoring authoring)
         {
             AddComponent(new EntitySpawnerDataComponent()

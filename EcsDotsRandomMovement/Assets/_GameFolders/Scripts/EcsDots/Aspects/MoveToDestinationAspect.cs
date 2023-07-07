@@ -2,8 +2,6 @@ using EcsDostRandomMovement.EcsDots.Components;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
-using UnityEngine;
-using Random = Unity.Mathematics.Random;
 
 namespace EcsDostRandomMovement.EcsDots.Aspects
 {
@@ -25,7 +23,6 @@ namespace EcsDostRandomMovement.EcsDots.Aspects
                 elapsedTime = math.abs(Entity.Index + elapsedTime);
                 uint roundValue = (uint)math.round(elapsedTime);
                 RandomIncraseRW.ValueRW.Value += roundValue;
-                Debug.Log(RandomIncraseRW.ValueRO.Value.ToString());
                 uint seed = RandomIncraseRW.ValueRO.Value;
                 seed += RandomIncraseRW.ValueRO.Value % 2 == 0 ? (uint)10 : 20;
                 float x = Random.CreateFromIndex(seed).NextFloat(0f, 500f);
