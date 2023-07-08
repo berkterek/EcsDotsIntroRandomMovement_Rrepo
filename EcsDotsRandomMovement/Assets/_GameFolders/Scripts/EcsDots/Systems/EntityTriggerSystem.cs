@@ -1,12 +1,14 @@
 using EcsDostRandomMovement.EcsDots.Components;
 using Unity.Entities;
 using Unity.Physics;
+using Unity.Physics.Systems;
 using Unity.Rendering;
 using UnityEngine;
 
 namespace EcsDostRandomMovement.EcsDots.Systems
 {
-    //[UpdateInGroup(typeof(PhysicsDisplayDebugGroup))]
+    [UpdateInGroup(typeof(FixedStepSimulationSystemGroup))]
+    [UpdateAfter(typeof(PhysicsSimulationGroup))]
     public partial struct EntityTriggerSystem : ISystem
     {
         struct ComponentDataHandle
@@ -31,6 +33,7 @@ namespace EcsDostRandomMovement.EcsDots.Systems
 
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<SimulationSingleton>();
             state.RequireForUpdate<URPMaterialPropertyBaseColor>();
             state.RequireForUpdate<PersonTagDataComponent>();
             _componentDataHandle = new ComponentDataHandle(ref state);

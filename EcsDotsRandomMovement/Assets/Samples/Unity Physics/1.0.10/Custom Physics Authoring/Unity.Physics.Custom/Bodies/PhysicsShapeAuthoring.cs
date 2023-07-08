@@ -185,7 +185,7 @@ namespace Unity.Physics.Authoring
             height = props.Height;
         }
 
-        public CapsuleGeometryAuthoring GetCapsuleProperties()
+        internal CapsuleGeometryAuthoring GetCapsuleProperties()
         {
             GetCylindricalProperties(
                 m_Capsule, out var center, out var height, out var radius, out var orientationEuler, m_ShapeType != ShapeType.Capsule
@@ -610,7 +610,7 @@ namespace Unity.Physics.Authoring
             SyncSphereProperties();
         }
 
-        public void SetCapsule(CapsuleGeometryAuthoring geometry)
+        internal void SetCapsule(CapsuleGeometryAuthoring geometry)
         {
             m_ShapeType = ShapeType.Capsule;
             m_PrimitiveCenter = geometry.Center;
